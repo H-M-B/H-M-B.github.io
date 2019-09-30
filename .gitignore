@@ -1,7 +1,0 @@
-.gitignore
-/.idea
-/.idea/*
-.idea
-node_modules
-package.json
-yarn.lock
