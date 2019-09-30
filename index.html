@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Computer Architecture II</title>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+
+    <style>
+        body, html {
+            font-family: 'Inconsolata', monospace;
+        }
+
+        .font-18 {
+            font-size: 18px;
+        }
+
+        .font-16 {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center">
+                    Computer Architecture Notes
+                </h1>
+                <hr>
+                <p class="text-center text-muted m-0">
+                    By: <i class="fa fa-user"></i>
+                    Prof. Dr. Ali El-Desoky, &nbsp;
+                    <i class="fa fa-user"></i>
+                    T.A. Hossam M. Balaha
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2>
+                Control Memory
+            </h2>
+            <hr>
+        </div>
+        <div class="col-12">
+            <p class="font-18">
+                The control memory address register specifies the address of
+                the micro-instruction, and the control data
+                register holds the micro-instruction read from memory. The control memory
+                is assumed to be a ROM (Read Only Memory), which stores all control information.
+            </p>
+            <p class="font-18">
+                The next address generator is sometimes called a micro-programed sequencer,
+                as it determines the address sequence that is read from control memory.
+            </p>
+        </div>
+        <div class="col-12 text-center">
+            <img src="images/img-1.png" class="shadow" alt="">
+        </div>
+        <div class="col-12 mt-4">
+            <p class="font-18">
+                The micro-instruction contains a control word that specifies one or
+                more micro-operations for the data processor.
+            </p>
+            <p class="font-18">
+                The address sequencing capabilities required in a control memory are:
+            </p>
+            <div class="ml-5">
+                <ul class="list-unstyled">
+                    <li class="font-16">
+                        <i class="fa fa-caret-right"></i>
+                        Incrementing of the control address register.
+                    </li>
+                    <li class="font-16 mt-1">
+                        <i class="fa fa-caret-right"></i>
+                        Unconditional branch or conditional branch, depending on status bit conditions.
+                    </li>
+                    <li class="font-16 mt-1">
+                        <i class="fa fa-caret-right"></i>
+                        A mapping process from the bits of the instruction to an address for control memory.
+                    </li>
+                    <li class="font-16 mt-1">
+                        <i class="fa fa-caret-right"></i>
+                        A facility for subroutine call and return.
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-12">
+            <p class="font-18">
+                The next figure shows a block diagram of a control memory and the associated hardware
+                needed for selecting the next micro-instruction address.
+            </p>
+        </div>
+        <div class="col-12 text-center">
+            <img src="images/img-2.png" class="shadow" alt="">
+        </div>
+        <div class="col-12 mt-4">
+            <h2>
+                Micro-instruction Format
+            </h2>
+            <hr>
+        </div>
+        <div class="col-12 mt-4">
+            <p class="font-18">
+                The following figure shows the micro-instruction format for the control memory.
+            </p>
+        </div>
+        <div class="col-12 text-center">
+            <img src="images/img-3.png" class="shadow" alt="">
+        </div>
+        <div class="col-12 mt-4">
+            <p class="font-18">
+                The fields are:
+            </p>
+            <div class="ml-5">
+                <ul class="list-unstyled">
+                    <li class="font-16">
+                        <i class="fa fa-caret-right"></i>
+                        F1, F2, and F3: Microoperation fields.
+                    </li>
+                    <li class="font-16 mt-1">
+                        <i class="fa fa-caret-right"></i>
+                        CD: Selects the status bit conditions.
+                    </li>
+                    <li class="font-16 mt-1">
+                        <i class="fa fa-caret-right"></i>
+                        BR: Type of the branch to be used.
+                    </li>
+                    <li class="font-16 mt-1">
+                        <i class="fa fa-caret-right"></i>
+                        AD: Contains the branch address.
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-12 mt-4">
+            <p class="font-18">
+                The address field is 7-bits as the control memory has 128 words.
+                The micro-operations are subdivided into three fields bits each.
+                The three bits in each field are encoded to specify seven distinct
+                micro-operations which are listed in the following four figures.
+            </p>
+        </div>
+        <div class="col-12 text-center">
+            <img src="images/img-4.png" class="shadow" alt="">
+        </div>
+        <div class="col-12 text-center mt-4">
+            <img src="images/img-5.png" class="shadow" alt="">
+        </div>
+        <div class="col-12 text-center mt-4">
+            <img src="images/img-6.png" class="shadow" alt="">
+        </div>
+        <div class="col-12 text-center mt-4">
+            <img src="images/img-7.png" class="shadow" alt="">
+        </div>
+        <div class="col-12 mt-4">
+            <p class="font-18">
+                All transfer-type micro-operations symbols use five letters. The first two letters designate
+                the source register, the third letter is always a T, and the last two letters designate
+                the destination register.
+            </p>
+        </div>
+
+        <div class="col-12 mt-4">
+            <h2>
+                Operations Code Mapping
+            </h2>
+            <hr>
+        </div>
+        <div class="col-12">
+            <p class="font-18">
+                A special type of branch exists when a micro-instruction specifies a branch to the first word in control
+                memory where a microprogram routine for an instruction is located. The status bits for this type of
+                branch are the bits in the operation code part of the instruction.
+            </p>
+        </div>
+        <div class="col-12">
+            <p class="font-18">
+                The mapping consists of placing a 0 in the most significant bit of the address, transferring the four
+                operation code bits, and clearing the two least significant bits of the control address register.
+            </p>
+        </div>
+        <div class="col-12 text-center mt-4">
+            <img src="images/img-8.png" class="shadow" alt="">
+        </div>
+        <div class="col-12 mt-4">
+            <h2 class="font-weight-bold">
+                Related Videos
+            </h2>
+            <hr>
+        </div>
+        <div class="col-12">
+            <h3>
+                Control Memory - Computer Architecture II
+            </h3>
+        </div>
+        <div class="col-12 text-center mt-4">
+            <iframe width="1113" height="750"
+                    class="w-100"
+                    src="https://www.youtube.com/embed/9ziHz-uURfY" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>
+        <div class="col-12 mt-4">
+            <h3>
+                Mano - Computer Architecture II
+            </h3>
+        </div>
+        <div class="col-12 text-center mt-4">
+            <iframe width="1280" height="721"
+                    class="w-100"
+                    src="https://www.youtube.com/embed/7K6VaskY4X0" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>
+        <div class="col-12 mt-4">
+            <h2 class="font-weight-bold">
+                References
+            </h2>
+            <hr>
+        </div>
+        <div class="col-12">
+            <div class="ml-5">
+                <ul class="list-unstyled">
+                    <li class="font-16">
+                        <i class="fa fa-caret-right"></i>
+                        <a href="https://www.amazon.com/Computer-System-Architecture-Morris-Mano/dp/0131755633">
+                            Computer System Architecture, Morris Mano, 3rd Edition.
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-12 my-5"></div>
+    </div>
+</div>
+
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
